@@ -21,14 +21,11 @@ int	ft_print_pointer(unsigned long long ptr)
 	int	size;
 
 	size = 0;
-	size += ft_print_string("0x");
 	if (ptr == 0)
-		size += ft_print_character('0');
-	else
-	{
-		ft_search_pointer(ptr);
-		size += ft_length_pointer(ptr);
-	}
+		return (ft_print_string("(nil)"));
+	size += ft_print_string("0x");
+	ft_search_pointer(ptr);
+	size += ft_length_pointer(ptr);
 	return (size);
 }
 
@@ -37,6 +34,8 @@ static int	ft_length_pointer(unsigned long long ptr)
 	int	len;
 
 	len = 0;
+	if (ptr == 0)
+		return (1);
 	while (ptr > 0)
 	{
 		len++;

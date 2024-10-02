@@ -16,7 +16,7 @@
 # include <stdarg.h>
 # include <unistd.h>
 
-int	ft_print_character(int character);
+int	ft_print_character(char character);
 int	ft_printf(const char *str, ...);
 int	ft_print_string(char *str);
 int	ft_print_number(int n);

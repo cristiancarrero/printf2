@@ -9,43 +9,33 @@
 #    Updated: 2024/06/01 18:54:43 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
-NAME    = libftprintf.a
+NAME = libftprintf.a
 INCLUDE = ft_printf.h
 
-SRC     = ft_printf.c          \
-           ft_basics.c         \
-           ft_hexadecimals.c    \
-           ft_pointers.c       
+SRC = ft_printf.c ft_basics.c ft_hexadecimals.c ft_pointers.c
 
-OBJ     = ${SRC:.c=.o}
+OBJ = $(SRC:.c=.o)
 
-CC      = gcc
-RM      = rm -f
-AR      = ar rc
-RN      = ranlib
-
-CFLAGS  = -Wall -Wextra -Werror -I.
-
-.c.o:
-	${CC} ${CFLAGS} -c $< -o $@
+CC = gcc
+RM = rm -f
+AR = ar rc
+RN = ranlib
 
 all: $(NAME)
 
-$(NAME): ${OBJ}
-	@echo "Compiling .."
-	${AR} ${NAME} ${OBJ}
-	${RN} ${NAME}
-	@echo "Done !"
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -I. -c $< -o $@
+
+$(NAME): $(OBJ)
+	$(AR) $(NAME) $(OBJ)
+	$(RN) $(NAME)
 
 clean:
-	@echo "Removing .o files..."
-	${RM} ${OBJ}
-	@echo "Done !"
+	$(RM) $(OBJ)
 
 fclean: clean
-	@echo "Removing lib..."
-	${RM} $(NAME)
-	@echo "Done !"
+	$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

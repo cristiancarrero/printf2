@@ -14,9 +14,13 @@
 
 static int	ft_select_format(va_list argument, const char word);
 
-int	ft_print_character(int character)
+int	ft_print_character(char character)
 {
-	write(1, &character, 1);
+	int	result;
+
+	result = write(1, &character, 1);
+	if (result == -1)
+		return (-1);
 	return (1);
 }
 
